@@ -16,7 +16,8 @@ export const users = pgTable("users", {
   name: text("name"),
   email: varchar("email", { length: 320 }),
   loginMethod: varchar("loginMethod", { length: 64 }),
-  role: pgEnum("role", ["user", "admin"]).default("user").notNull(),
+  role: text("role").default("user").notNull(),
+
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
@@ -45,7 +46,7 @@ export const tasks = pgTable("tasks", {
   taskId: varchar("taskId", { length: 64 }).notNull().unique(),
   title: varchar("title", { length: 255 }).notNull(),
   description: text("description"),
-  status: pgEnum("status", ["queued", "running", "completed", "failed"]).default("queued").notNull(),
+  status: text("status").default("queued").notNull(),
   result: text("result"),
   error: text("error"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
@@ -59,7 +60,8 @@ export type InsertTask = typeof tasks.$inferInsert;
 export const messages = pgTable("messages", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   userId: integer("userId").notNull(),
-  role: pgEnum("role", ["user", "assistant"]).notNull(),
+  role: text("role").notNull(),
+
   content: text("content").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
