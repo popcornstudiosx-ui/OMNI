@@ -170,16 +170,15 @@ export default defineConfig({
   },
   server: {
     host: true,server: {
-  host: true,
-  proxy: {
-    "/api": {
-      target: "http://localhost:8080", // This only works for local dev
-      changeOrigin: true,
-      secure: false, // Turn this off for local dev
-      ws: true,
-    },
-  },
-},
+‎  host: true,
+‎  proxy: {
+‎    "/api": {
+‎      target: "http://localhost:8080",
+‎      changeOrigin: true,
+‎      ws: true,
+‎    },
+‎  },
+‎},
 
   // ... rest of your existing settings
 },
