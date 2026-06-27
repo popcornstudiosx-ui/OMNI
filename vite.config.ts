@@ -173,14 +173,14 @@ export default defineConfig({
   host: true,
   proxy: {
     "/api": {
-      target: process.env.NODE_ENV === "production" 
-        ? "https://omni-app-production-b1ed.up.railway.app" 
-        : "http://localhost:8080",
+      target: "http://localhost:8080", // This only works for local dev
       changeOrigin: true,
-      secure: true, // Forces WSS for secure connections
+      secure: false, // Turn this off for local dev
       ws: true,
     },
   },
+},
+
   // ... rest of your existing settings
 },
 
