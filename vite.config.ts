@@ -169,7 +169,21 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
-    host: true,
+    host: true,server: {
+  host: true,
+  proxy: {
+    "/api": {
+      target: process.env.NODE_ENV === "production" 
+        ? "https://omni-app-production-b1ed.up.railway.app" 
+        : "http://localhost:8080",
+      changeOrigin: true,
+      secure: true, // Forces WSS for secure connections
+      ws: true,
+    },
+  },
+  // ... rest of your existing settings
+},
+
     allowedHosts: [
       ".manuspre.computer",
       ".manus.computer",
